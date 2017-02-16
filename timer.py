@@ -5,7 +5,8 @@ blink_half_period = 1 / 6
 blink_reps = 3 * 4 * 4
 total_time = 25 * 60
 
-def main(stdscr):
+def main(stdscr, T):
+    total_time = T
     stdscr.clear()
     while total_time > 0:
         secs = total_time % 60
@@ -31,4 +32,4 @@ def main(stdscr):
     stdscr.refresh()
     stdscr.getkey()
 
-curses.wrapper(main)
+curses.wrapper(main, total_time)
