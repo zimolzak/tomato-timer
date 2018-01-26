@@ -1,9 +1,9 @@
 import curses
 from time import sleep
 
-blink_half_period = 1 / 6
-blink_reps = 3 * 4 * 4
-total_time = 25 * 60
+BLINK_HALF_PERIOD = 1 / 6
+BLINK_REPS = 3 * 4 * 4
+TOTAL_TIME_SEC = 25 * 60
 
 def main(stdscr, T):
     total_time = T
@@ -19,17 +19,17 @@ def main(stdscr, T):
         stdscr.refresh()
         total_time -= 1
         sleep(1)
-    for i in range(blink_reps):
+    for i in range(BLINK_REPS):
         for row in range(1, 21, 2):
             stdscr.addstr(row, 0, 'DONE '*14, curses.A_REVERSE)
             stdscr.refresh()
-        sleep(blink_half_period)
+        sleep(BLINK_HALF_PERIOD)
         for row in range(1, 21, 2):
             stdscr.addstr(row, 0, '     '*14)
             stdscr.refresh()
-        sleep(blink_half_period)
+        sleep(BLINK_HALF_PERIOD)
     stdscr.addstr(1, 0, 'Any key to quit...')
     stdscr.refresh()
     stdscr.getkey()
 
-curses.wrapper(main, total_time)
+curses.wrapper(main, TOTAL_TIME_SEC)
